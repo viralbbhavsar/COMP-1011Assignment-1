@@ -4,19 +4,40 @@
 
 /**
  * @author Viral
- *@version 1.0
+ *@version 1.1
  */
 public class Hero {
+	
+	//Private properties------------------------------------------------
 	
 	private int strength;
 	private int speed;
 	private int health;
+	
+	//public properties-------------------------------------------------
+	
 	public String name;
 	
-	private Hero(String name) {
+	// Constructor-----------------------------------------------------
+	
+	public Hero(String name) {
 		this.name = name;
 		generateAbilities();
 	}
+	
+	//Public methods------------------------------------------------------
+	
+	public void fight() {
+		hitAttempt();
+	}
+	
+	public void show() {
+		System.out.println("Strength:" + this.strength);
+		System.out.println("Speed:" + this.speed);
+		System.out.println("health:" + this.health);
+	}
+	
+	//private methods----------------------------------------------------
 	
 	private void generateAbilities() {
 		
@@ -25,13 +46,10 @@ public class Hero {
 		this.health = (int)(Math.random()*100+1);
 	}
 	
-	public void fight() {
-		hitAttempt();
-	}
-	
 	private boolean hitAttempt() {
 		int check = (int)(Math.random()*100+1);
 		if(check > 1 && check < 21) {
+			System.out.println("Hero has been hit.");
 			hitDamage();
 			return true;
 		}
@@ -42,14 +60,7 @@ public class Hero {
 	
 	private int hitDamage() {
 		int damage = strength * (int)(Math.random()*6+1);
+		System.out.println("The damage is " + damage);
 		return damage;
 	}
-	
-	public void show() {
-		System.out.println("Strength:" + this.strength);
-		System.out.println("Speed:" + this.speed);
-		System.out.println("health:" + this.health);
-		
-	}
-
 }
